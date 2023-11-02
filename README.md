@@ -1,3 +1,6 @@
+
+
+
 # Language Conditioned Spatial Relation Reasoning for 3D Object Grounding
 
 This repository is the official implementation of [Language Conditioned Spatial Relation Reasoning for 3D Object Grounding](https://arxiv.org/abs/2211.09646). 
@@ -5,6 +8,18 @@ Project webpage: https://cshizhe.github.io/projects/vil3dref.html
 
 Localizing objects in 3D scenes based on natural language requires understanding and reasoning about spatial relations. In particular, it is often crucial to distinguish similar objects referred by the text, such as "the left most chair" and "a chair next to the window". In this work we propose a language-conditioned transformer model for grounding 3D objects and their spatial relations. To this end, we design a spatial self-attention layer that accounts for relative distances and orientations between objects in input 3D point clouds. Training such a layer with visual and language inputs enables to disambiguate spatial relations and to localize objects referred by the text. To facilitate the cross-modal learning of relations, we further propose a teacher-student approach where the teacher model is first trained using ground-truth object labels, and then helps to train a student model using point cloud inputs. We perform ablation studies showing advantages of our approach. We also demonstrate our model to significantly outperform the state of the art on the challenging Nr3D, Sr3D and ScanRefer 3D object grounding datasets.
 
+## Installation on cs-3dlg-02
+```
+conda create -n vil3dref python=3.10
+conda activate vil3dref
+
+conda install pytorch=2.0.1 torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+pip install -r requirements.txt
+
+# To use a PointNet++ visual-encoder you need to compile its CUDA layers for PointNet++: Note: To do this compilation also need: gcc5.4 or later.
+cd og3d_src/model/external_tools/pointnet2
+python setup.py install
+```
 
 ## Installation
 1. Follow the [instructions](https://github.com/zyang-ur/SAT#prerequisites) to build the environment.
@@ -72,3 +87,6 @@ year         = {2022},
 ## Acknowledgement
 Some of the codes are built upon [ReferIt3D](https://github.com/referit3d/referit3d) and [SAT](https://github.com/zyang-ur/SAT).
 Thanks them for their great works!
+
+
+
