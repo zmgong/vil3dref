@@ -49,7 +49,7 @@ def process_per_scan(scan_id, scan_dir, out_dir, apply_global_alignment=True, is
         # colored by nyu40 labels (ply property 'label' denotes the nyu40 label id)
         with open(os.path.join(scan_dir, scan_id, '%s_vh_clean_2.labels.ply'%(scan_id)), 'rb') as f:
             plydata = PlyData.read(f)
-        sem_labels = np.array(plydata.elements[0]['label']).astype(np.long)
+        sem_labels = np.array(plydata.elements[0]['label']).astype(np.longlong)
         assert len(coords) == len(colors) == len(sem_labels)        
 
         # Map each point to segment id
@@ -71,7 +71,7 @@ def process_per_scan(scan_id, scan_dir, out_dir, apply_global_alignment=True, is
             instance_class_labels.append(x['label'])
             instance_segids.append(x['segments'])
         
-        instance_labels = np.ones(sem_labels.shape[0], dtype=np.long) * -100
+        instance_labels = np.ones(sem_labels.shape[0], dtype=np.longlong) * -100
         for i, segids in enumerate(instance_segids):
             pointids = []
             for segid in segids:
